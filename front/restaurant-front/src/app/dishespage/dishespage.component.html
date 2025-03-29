@@ -1,0 +1,10 @@
+<p>dishespage works!</p>
+<h2>Dishes</h2>
+<div>
+  <div *ngFor="let dish of dishes">
+    <p>{{ dish.name }} - {{ dish.price }}$ </p>
+    <p>{{dish.description}}</p>
+  </div>
+</div>
+<a [routerLink]="['/restaurant', restaurantId, 'menu']">Back to Menu</a>
+

@@ -1,0 +1,9 @@
+<p>menupage works!</p>
+<h2>Restaurant Menu</h2>
+<div>
+  <div *ngFor="let menu of menus">
+    <button (click)="goToDishes(menu.id)">{{ menu.name }}</button>
+  </div>
+</div>
+<a [routerLink]="['/restaurant', restaurantId]">Back to Restaurant</a>
+

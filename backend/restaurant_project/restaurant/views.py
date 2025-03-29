@@ -11,7 +11,12 @@ def restaurant_list(request):
     serializer = RestaurantSerializer(restaurants, many=True)
     return Response(serializer.data)
 
+class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+    lookup_field = 'id'
 
+    
 @api_view(['GET'])
 def restaurant_menus(request, restaurant_id):
     menus = Menu.objects.filter(restaurant_id=restaurant_id)

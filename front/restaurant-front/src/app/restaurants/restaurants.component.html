@@ -1,6 +1,5 @@
 <p>restaurants works!</p>
 <div *ngFor="let restaurant of restaurants" class="restaurant-card">
-    <img [src]="restaurant.image_url" alt="{{ restaurant.name }}" width="200px">
-    <h3>{{ restaurant.name }}</h3>
-  </div>
+  <button (click)="goToRestaurantDetail(restaurant.id)">{{ restaurant.name }}</button>
+</div>
   

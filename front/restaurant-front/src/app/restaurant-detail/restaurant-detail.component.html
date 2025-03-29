@@ -1,0 +1,10 @@
+<p>restaurant-detail works!</p>
+<div *ngIf="restaurant">
+    <h2>{{ restaurant.name }}</h2>
+    <img [src]="restaurant.image_url" alt="{{ restaurant.name }}" width="300">
+    <p>{{ restaurant.description }}</p>
+    <button (click)="goToMenu()">View Menu</button>
+
+      <a [routerLink]="['']"><button>Back to Restaurants list</button></a>
+  </div>
+  
