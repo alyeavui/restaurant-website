@@ -30,7 +30,6 @@ Table menu {
 Table dish_category {
     id bigserial [primary key]
     name text
-    created_at timestamp [default: current_timestamp]
 }
 ```
 ```
