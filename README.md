@@ -22,14 +22,22 @@ Table restaurant {
 ```
 Table menu {
     id bigserial [primary key]
-    restaurant_id bigint NOT NULL REFERENCES restaurants
+    restaurant_id bigint NOT NULL REFERENCES restaurant
     name text
+}
+```
+```
+Table dish_category {
+    id bigserial [primary key]
+    name text
+    created_at timestamp [default: current_timestamp]
 }
 ```
 ```
 Table dish {
     id bigserial [primary key]
-    menu_id bigint NOT NULL REFERENCES menus
+    menu_id bigint NOT NULL REFERENCES menu
+    category_id bigint NOT NULL REFERENCES dish_category
     name text
     description text [nullable]
     price decimal(6,2)
@@ -38,7 +46,7 @@ Table dish {
 ```
 Table review {
     id bigserial [primary key]
-    restaurant_id bigint NOT NULL REFERENCES restaurants
+    restaurant_id bigint NOT NULL REFERENCES restaurant
     user_id bigint NOT NULL REFERENCES users
     text text
     rating integer [default: 5]
