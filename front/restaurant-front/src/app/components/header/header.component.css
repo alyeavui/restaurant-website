@@ -1,0 +1,56 @@
+header {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FF6F61;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #D90429;
+  }
+  
+  .cta-button:hover {
+    background-color: #D90429;
+  }
+  
+  .login-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  a {
+    cursor: pointer;
+  }

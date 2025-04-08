@@ -1,0 +1,58 @@
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+    background: linear-gradient(135deg, #e86b4c, #ffb88c);
+    color: white;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    padding: 0 10%;
+  }
+  
+  .hero-content {
+    flex: 1;
+    max-width: 500px;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+  }
+  
+  .hero-image img {
+    height: 400px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  .cta-button {
+    margin-top: 20px;
+    width: 220px;
+    height: 65px;
+    font-size: 22px;
+    background-color: #FFF5EE;
+    border: none;
+    color: #FF6F61;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cta-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    color: #FFF5EE;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
