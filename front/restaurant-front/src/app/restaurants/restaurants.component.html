@@ -2,10 +2,20 @@
 <div class="restaurant-container">
   <h2 class="restaurant-heading">Our Restaurants</h2>
   
-  <div *ngFor="let restaurant of restaurants" class="restaurant-card">
+  <div *ngFor="let restaurant of filteredRestaurants" class="restaurant-card">
     <div class="restaurant-card-content">
       <h3 class="restaurant-name">{{ restaurant.name }}</h3>
       <button class="view-button" (click)="goToRestaurantDetail(restaurant.id)">View Details</button>
     </div>
   </div>
 </div>
+
+<div *ngIf="filteredRestaurants.length === 0 && searchTerm.trim() !== ''" class="no-results">
+  <p>There is no such restaurant.</p>
+</div>
+
+<div>
+  <input [(ngModel)]="searchTerm" type="text" placeholder="Search by name" />
+  <button (click)="searchRestaurants()">Search</button>
+</div>
+
