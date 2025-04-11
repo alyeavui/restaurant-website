@@ -12,4 +12,8 @@ export class HeaderComponent {
   goToMenu() {
     this.router.navigate(['/menu']);
   }
+
+  login(): void {
+    this.router.navigate(['/login']);
+  }
 }

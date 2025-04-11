@@ -1,7 +1,14 @@
 <app-header-main></app-header-main>
-<div class="restaurant-container">
-  <h2 class="restaurant-heading">Our Restaurants</h2>
-  
+<h2 class="restaurant-heading">Our Restaurants</h2>
+<div class="search-container">
+  <input [(ngModel)]="searchTerm" type="text" placeholder="Search by name" class="search-input" />
+  <button (click)="searchRestaurants()" class="search-button">Search</button>
+</div>
+
+<div *ngIf="filteredRestaurants.length === 0 && searchTerm.trim() !== ''" class="no-results">
+  <p>There is no such restaurant.</p>
+</div>
+<div class="restaurant-container">  
   <div *ngFor="let restaurant of filteredRestaurants" class="restaurant-card">
     <div class="restaurant-card-content">
       <h3 class="restaurant-name">{{ restaurant.name }}</h3>
@@ -10,12 +17,4 @@
   </div>
 </div>
 
-<div *ngIf="filteredRestaurants.length === 0 && searchTerm.trim() !== ''" class="no-results">
-  <p>There is no such restaurant.</p>
-</div>
-
-<div>
-  <input [(ngModel)]="searchTerm" type="text" placeholder="Search by name" />
-  <button (click)="searchRestaurants()">Search</button>
-</div>
 

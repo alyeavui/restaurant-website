@@ -47,7 +47,7 @@
   }
   
   .menu-button {
-    background: #ff007a;
+    background: #e64a19;
     color: white;
     border: none;
     border-radius: 50%;
@@ -60,11 +60,11 @@
   }
   
   .menu-button:hover {
-    background: #d60069;
+    background: #c23e16;
   }
   
   .back-link-wrapper {
-    margin-top: 20px;
+    margin-top: 50px;
   }
   
   .back-link {

@@ -18,11 +18,18 @@ header {
     margin: 0 auto;
   }
   
-  .logo a {
+  .logo {
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
-    color: #FF6F61;
+  }
+  
+  .logo-dine {
+    color: #ff7700;
+  }
+  
+  .logo-go {
+    color: rgb(255, 0, 0);
   }
   
   .login-button {
