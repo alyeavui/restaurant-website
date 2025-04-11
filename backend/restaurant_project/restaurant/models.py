@@ -27,6 +27,12 @@ class Dish(models.Model):
     def __str__(self):
         return f"{self.name} - {self.price}₸"
 
+class ReviewManager(models.Manager):
+    def good_reviews(self):
+        return self.filter(rating=5)
+    def bad_reviews(self):
+        return self.filter(rating__lte=3)
+
 class Review(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="reviews")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -35,7 +41,8 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects=ReviewManager()
+
     def __str__(self):
         return f"Review by {self.user.username} for {self.restaurant.name}"
-
 

@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 
 from .models import Restaurant, Menu, Dish, Review
 from .serializers import RestaurantSerializer, MenuSerializer, DishSerializer, ReviewSerializer
@@ -87,43 +88,33 @@ class DishAPIView(APIView):
 class ReviewAPIView(APIView):
     permission_classes = [IsAdminOrReadOnly, IsOwnerOrReadOnly]
 
-    def get(self, request, restaurant_id=None, review_id=None, *args, **kwargs):
-        if review_id:
-            try:
-                review = Review.objects.get(pk=review_id, restaurant_id=restaurant_id)
-                return Response({'review': ReviewSerializer(review).data})
-            except Review.DoesNotExist:
-                return Response({'error': 'Review with given ID not found'}, status=404)
-        else:
-            reviews = Review.objects.filter(restaurant_id=restaurant_id)
-            return Response({'reviews': ReviewSerializer(reviews, many=True).data})
-
-    def post(self, request, restaurant_id=None, *args, **kwargs):
-        serializer = ReviewSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(user=request.user, restaurant_id=restaurant_id)
-        return Response({'new_review': serializer.data}, status=201)
-
-    def put(self, request, restaurant_id=None, review_id=None, *args, **kwargs):
-        try:
-            review = Review.objects.get(pk=review_id, restaurant_id=restaurant_id)
-        except Review.DoesNotExist:
-            return Response({'error': 'Review not found'}, status=404)
-
-        self.check_object_permissions(request, review)
-
-        serializer = ReviewSerializer(instance=review, data=request.data)
+    def get(self, request, *args, **kwargs):
+        review_id = kwargs.get('review_id', None)
+        restaurant_id = kwargs.get('restaurant_id', None)
+        review = get_object_or_404(Review, pk=review_id, restaurant=restaurant_id)
+        return Response(ReviewSerializer(review).data)
+    
+    def put(self, request, *args, **kwargs):
+        review_id = kwargs.get('review_id',None)
+        restaurant_id = kwargs.get('restaurant_id',None)
+        review = get_object_or_404(Review, pk=review_id, restaurant=restaurant_id)
+        serializer = ReviewSerializer(instance=review, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response({'review': serializer.data})
+        return Response(serializer.data)
+    
+class ReviewsList(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def delete(self, request, restaurant_id=None, review_id=None, *args, **kwargs):
-        try:
-            review = Review.objects.get(pk=review_id, restaurant_id=restaurant_id)
-        except Review.DoesNotExist:
-            return Response({'error': 'Review not found'}, status=404)
+    def get(self, request, *args, **kwargs):
+        reviews = Review.objects.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data)
 
-        self.check_object_permissions(request, review)
-        review.delete()
-        return Response({'message': 'Successfully deleted'})
-
+    def post(self, request, restaurant_id, *args, **kwargs):
+        restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user, restaurant=restaurant)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
