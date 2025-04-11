@@ -8,7 +8,8 @@ import { CommentsComponent } from '../../components/comments/comments.component'
   selector: 'app-landing',
   imports: [HeaderComponent, HeroSectionComponent, FooterComponent, CommentsComponent],
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css'
+  styleUrl: './landing.component.css',
+  standalone: true
 })
 export class LandingComponent {
 

@@ -1,0 +1,92 @@
+.menu-section {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .section-subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #666;
+  }
+  
+  .carousel {
+    margin-bottom: 30px;
+  }
+  
+  .menu-card {
+    padding: 10px;
+  }
+  
+  .menu-card-content {
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    padding: 30px 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .menu-card-content:hover {
+    transform: scale(1.03);
+  }
+  
+  .menu-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .menu-button {
+    background: #ff007a;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    align-self: flex-end;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .menu-button:hover {
+    background: #d60069;
+  }
+  
+  .back-link-wrapper {
+    margin-top: 20px;
+  }
+  
+  .back-link {
+    margin-top: 20px;
+    width: 220px;
+    height: 65px;
+    font-size: 22px;
+    background-color: #FFF5EE;
+    border: none;
+    color: #FF6F61;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    color: #FFF5EE;
+  }
+  

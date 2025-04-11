@@ -1,0 +1,79 @@
+.restaurant-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+  
+.restaurant-heading {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #e64a19  ;
+    text-align: center;
+    margin-top: 100px;
+}
+  
+.restaurant-card {
+    background: linear-gradient(135deg, #e86b4c, #ffb88c);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+  
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+  
+.restaurant-card-content {
+    padding: 20px;
+}
+  
+.restaurant-name {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    color: white;
+}
+  
+.view-button {
+    background-color: white;
+    color: #e64a19;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+  
+.view-button:hover {
+    background-color: #e64a19;
+    color: white;
+}
+  
+@media (min-width: 768px) {
+    .restaurant-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+}
+    
+    .restaurant-heading {
+        grid-column: 1 / -1;
+    }
+        
+    .restaurant-card {
+        margin-bottom: 0;
+    }
+}
+  
+@media (min-width: 992px) {
+    .restaurant-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}

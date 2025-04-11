@@ -5,9 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { HeaderComponent } from "../components/header/header.component";
+import { FooterComponent } from "../components/footer/footer.component";
+import { CommentsComponent } from "../components/comments/comments.component";
 @Component({
   selector: 'app-restaurant-detail',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HeaderComponent, FooterComponent, CommentsComponent],
   templateUrl: './restaurant-detail.component.html',
   styleUrl: './restaurant-detail.component.css'
 })

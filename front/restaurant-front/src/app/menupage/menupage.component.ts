@@ -3,25 +3,47 @@ import { CommonModule } from '@angular/common';
 import { RestaurantService } from '../services/restaurant.service';
 import { Restaurant } from '../restaurant';
 import { Menu } from '../menu';
-import { ActivatedRoute } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Dish } from '../dish';
-import { Router } from '@angular/router';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { HeaderComponent } from "../components/header/header.component";
+
 @Component({
   selector: 'app-menupage',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, SlickCarouselModule, HeaderComponent],
   templateUrl: './menupage.component.html',
-  styleUrl: './menupage.component.css'
+  styleUrls: ['./menupage.component.css'] // <--- исправлено: styleUrl -> styleUrls
 })
 export class MenupageComponent implements OnInit {
   menus: Menu[] = [];
   restaurantId!: number;
 
-  constructor(private route: ActivatedRoute, private restaurantService: RestaurantService, private router: Router) {}
+  slideConfig = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: true,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  };
+
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.restaurantId = Number(this.route.snapshot.paramMap.get('id'));
-    this.restaurantService.getMenus(this.restaurantId).subscribe(data => {
+    this.restaurantService.getMenus(this.restaurantId).subscribe((data) => {
       this.menus = data;
     });
   }
@@ -30,4 +52,3 @@ export class MenupageComponent implements OnInit {
     this.router.navigate(['/restaurant', this.restaurantId, 'menu', menuId, 'dishes']);
   }
 }
-

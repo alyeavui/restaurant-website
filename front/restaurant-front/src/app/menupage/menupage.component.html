@@ -1,9 +1,18 @@
-<p>menupage works!</p>
-<h2>Restaurant Menu</h2>
-<div>
-  <div *ngFor="let menu of menus">
-    <button (click)="goToDishes(menu.id)">{{ menu.name }}</button>
+<app-header></app-header>
+<div class="menu-section">
+  <h2 class="section-title">Menu</h2>
+  <p class="section-subtitle">Choose a category!</p>
+
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let menu of menus" class="menu-card">
+      <div class="menu-card-content">
+        <div class="menu-label">{{ menu.name }}</div>
+        <button class="menu-button" (click)="goToDishes(menu.id)">→</button>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+
+  <div class="back-link-wrapper">
+    <a [routerLink]="['/restaurant', restaurantId]" class="back-link">Back to Restaurant</a>
   </div>
 </div>
-<a [routerLink]="['/restaurant', restaurantId]">Back to Restaurant</a>
-

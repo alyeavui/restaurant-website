@@ -1,42 +1,57 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Django stuff:
+db.sqlite3
+*.log
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# Virtual env
+env/
+venv/
+ENV/
+.env
+.env.*
 
-# IDEs and editors
+# Media / Static
+/media/
+staticfiles/
+
+# Migrations (optional — keep if needed)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# === ANGULAR ===
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/cache/
+/frontend/.env
+
+# === IDEs ===
+.vscode/
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# === OS ===
 .DS_Store
 Thumbs.db
+
+# === Git ===
+.gitignore
+
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+.env
+
+# OS
+.DS_Store

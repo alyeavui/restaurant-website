@@ -1,1 +1,74 @@
-<p>comments works!</p>
+<div class="comments-container">
+    <h2>Customer Reviews</h2>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div class="comment-form-container" *ngIf="isLoggedIn">
+      <h3>{{ editingReview ? 'Edit Your Comment' : 'Add a Comment' }}</h3>
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div class="rating-selector">
+          <label>Rating:</label>
+          <div class="star-rating">
+            <select formControlName="rating">
+              <option *ngFor="let star of [1,2,3,4,5]" [value]="star">
+                {{ star }} {{ star === 1 ? 'Star' : 'Stars' }}
+              </option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="commentText">Your Comment:</label>
+          <textarea 
+            id="commentText" 
+            formControlName="text" 
+            rows="4" 
+            placeholder="Share your experience with this restaurant..."></textarea>
+          <div class="validation-error" *ngIf="reviewForm.get('text')?.invalid && reviewForm.get('text')?.touched">
+            Please enter a comment with at least 3 characters.
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" [disabled]="reviewForm.invalid">
+            {{ editingReview ? 'Update Comment' : 'Submit Comment' }}
+          </button>
+          <button type="button" *ngIf="editingReview" (click)="resetForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="login-prompt" *ngIf="!isLoggedIn">
+        <p>Please <a (click)="login()" class="login-link">log in</a> to leave a comment.</p>
+      </div>
+
+    <div class="comments-list">
+      <div *ngIf="reviews.length === 0" class="no-comments">
+        No comments yet. Be the first to comment on this restaurant!
+      </div>
+      
+      <div *ngFor="let review of reviews" class="comment-item">
+        <div class="comment-header">
+          <div class="comment-rating">
+            <span *ngFor="let star of getRatingStars(review.rating)" class="star filled">★</span>
+            <span *ngFor="let star of getEmptyStars(review.rating)" class="star">☆</span>
+          </div>
+          <div class="comment-meta">
+            <span class="comment-author">User #{{ review.user }}</span>
+            <span class="comment-date">{{ review.created_at | date:'medium' }}</span>
+            <span *ngIf="review.created_at !== review.updated_at" class="comment-edited">(edited)</span>
+          </div>
+        </div>
+        
+        <div class="comment-text">{{ review.text }}</div>
+        
+        <div class="comment-actions" *ngIf="canEditReview(review)">
+          <button (click)="editReview(review)" class="edit-button">Edit</button>
+          <button (click)="deleteReview(review.id)" class="delete-button">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

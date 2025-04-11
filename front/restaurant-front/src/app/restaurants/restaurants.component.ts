@@ -4,9 +4,10 @@ import { RestaurantService } from '../services/restaurant.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { HeaderMainComponent } from '../components/header-main/header-main.component';
 @Component({
   selector: 'app-restaurants',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HeaderMainComponent],
   templateUrl: './restaurants.component.html',
   styleUrl: './restaurants.component.css'
 })
