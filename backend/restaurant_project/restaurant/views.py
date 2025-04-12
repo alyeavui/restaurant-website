@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from .models import Restaurant, Menu, Dish, Review
-from .serializers import RestaurantSerializer, MenuSerializer, DishSerializer, ReviewSerializer
+from .serializers import RestaurantSerializer, MenuSerializer, DishSerializer, ReviewSerializer, RegistrationSerializer
 from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 
 
@@ -117,4 +117,14 @@ class ReviewsList(APIView):
         if serializer.is_valid():
             serializer.save(user=request.user, restaurant=restaurant)
             return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+# User registration
+class RegistrationView(APIView):
+    permission_classes = []
+    def post(self, request):
+        serializer = RegistrationSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message':'User created succesfully'}, status=201)
         return Response(serializer.errors, status=400)
