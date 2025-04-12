@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 from .models import Restaurant, Menu, Dish, Review
 from .serializers import RestaurantSerializer, MenuSerializer, DishSerializer, ReviewSerializer, RegistrationSerializer
-from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
+from .permissions import IsAdminOrOwner
 
 
 # Restaurant model: CBV + FBV
@@ -84,9 +84,9 @@ class DishAPIView(APIView):
         return Response(serializer.errors, status=400)
 
     
-# CRUD With authenticated users
+# RUD With authenticated users
 class ReviewAPIView(APIView):
-    permission_classes = [IsAdminOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsAdminOrOwner]
 
     def get(self, request, *args, **kwargs):
         review_id = kwargs.get('review_id', None)
@@ -98,11 +98,25 @@ class ReviewAPIView(APIView):
         review_id = kwargs.get('review_id',None)
         restaurant_id = kwargs.get('restaurant_id',None)
         review = get_object_or_404(Review, pk=review_id, restaurant=restaurant_id)
+
+        self.check_object_permissions(request,review)
+
         serializer = ReviewSerializer(instance=review, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
     
+    def delete(self, request, *args, **kwargs):
+        review_id = kwargs.get('review_id',None)
+        restaurant_id = kwargs.get('restaurant_id',None)
+        review = get_object_or_404(Review, pk=review_id, restaurant=restaurant_id)
+
+        self.check_object_permissions(request,review)
+
+        review.delete()
+        return Response({'message': 'Review deleted successfully'})
+
+# CR with authenticated users
 class ReviewsList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
