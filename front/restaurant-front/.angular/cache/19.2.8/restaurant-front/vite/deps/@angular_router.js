@@ -1,7 +1,7 @@
 import {
   Title
-} from "./chunk-VG2AENQP.js";
-import "./chunk-OGG7WJVR.js";
+} from "./chunk-NU737WT4.js";
+import "./chunk-FN7VH2HJ.js";
 import {
   HashLocationStrategy,
   LOCATION_INITIALIZED,
@@ -9,10 +9,10 @@ import {
   LocationStrategy,
   PathLocationStrategy,
   ViewportScroller
-} from "./chunk-JNFGS7YN.js";
+} from "./chunk-CMR2SBP4.js";
 import {
   DOCUMENT
-} from "./chunk-24N65UCO.js";
+} from "./chunk-M2QAQAW2.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -79,7 +79,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-LBQ7ANGX.js";
+} from "./chunk-5ZWKBG32.js";
 import {
   BehaviorSubject,
   ConnectableObservable,
@@ -5897,7 +5897,7 @@ function mapToCanDeactivate(providers) {
 function mapToResolve(provider) {
   return (...params) => inject(provider).resolve(...params);
 }
-var VERSION = new Version("19.2.6");
+var VERSION = new Version("19.2.7");
 export {
   ActivatedRoute,
   ActivatedRouteSnapshot,
@@ -5982,21 +5982,21 @@ export {
 
 @angular/router/fesm2022/router-B-Y85L0c.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/router/fesm2022/router_module-CbmfhtZA.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/router/fesm2022/router.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)

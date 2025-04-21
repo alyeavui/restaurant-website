@@ -1,19 +1,19 @@
 import {
   withHttpTransferCache
-} from "./chunk-OGG7WJVR.js";
+} from "./chunk-FN7VH2HJ.js";
 import {
   CommonModule,
   DomAdapter,
   getDOM,
   setRootDomAdapter
-} from "./chunk-JNFGS7YN.js";
+} from "./chunk-CMR2SBP4.js";
 import {
   DOCUMENT,
   PLATFORM_BROWSER_ID,
   XhrFactory,
   isPlatformServer,
   parseCookieValue
-} from "./chunk-24N65UCO.js";
+} from "./chunk-M2QAQAW2.js";
 import {
   APP_ID,
   ApplicationModule,
@@ -72,7 +72,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-LBQ7ANGX.js";
+} from "./chunk-5ZWKBG32.js";
 import {
   __spreadProps,
   __spreadValues
@@ -1965,7 +1965,7 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideZoneJsCompatibilityDetector() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
-var VERSION = new Version("19.2.6");
+var VERSION = new Version("19.2.7");
 
 export {
   EVENT_MANAGER_PLUGINS,
@@ -2008,23 +2008,23 @@ export {
 
 @angular/platform-browser/fesm2022/dom_renderer-DGKzginR.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/platform-browser/fesm2022/browser-X3l5Bmdq.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/platform-browser/fesm2022/platform-browser.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-VG2AENQP.js.map
+//# sourceMappingURL=chunk-NU737WT4.js.map

@@ -1,12 +1,12 @@
 import {
   NG_VALUE_ACCESSOR
-} from "./chunk-4ALCA3P7.js";
+} from "./chunk-BPVKH5J3.js";
 import {
   CommonModule
-} from "./chunk-JNFGS7YN.js";
+} from "./chunk-CMR2SBP4.js";
 import {
   isPlatformServer
-} from "./chunk-24N65UCO.js";
+} from "./chunk-M2QAQAW2.js";
 import {
   Component,
   Directive,
@@ -28,7 +28,7 @@ import {
   ɵɵdefineNgModule,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-LBQ7ANGX.js";
+} from "./chunk-5ZWKBG32.js";
 import "./chunk-S35MAB2V.js";
 
 // node_modules/ngx-slick-carousel/fesm2022/ngx-slick-carousel.mjs

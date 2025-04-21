@@ -1,7 +1,7 @@
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-24N65UCO.js";
+} from "./chunk-M2QAQAW2.js";
 import {
   ApplicationRef,
   Attribute,
@@ -60,7 +60,7 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-LBQ7ANGX.js";
+} from "./chunk-5ZWKBG32.js";
 import {
   Subject,
   __async,
@@ -3673,7 +3673,7 @@ var PlatformNavigation = class _PlatformNavigation {
 function registerLocaleData2(data, localeId, extraData) {
   return registerLocaleData(data, localeId, extraData);
 }
-var VERSION = new Version("19.2.6");
+var VERSION = new Version("19.2.7");
 var ViewportScroller = class _ViewportScroller {
   // De-sugared tree-shakable injection
   // See #23917
@@ -4154,9 +4154,8 @@ var PreconnectLinkChecker = class _PreconnectLinkChecker {
   }
   queryPreconnectLinks() {
     const preconnectUrls = /* @__PURE__ */ new Set();
-    const selector = "link[rel=preconnect]";
-    const links = Array.from(this.document.querySelectorAll(selector));
-    for (let link of links) {
+    const links = this.document.querySelectorAll("link[rel=preconnect]");
+    for (const link of links) {
       const url = getUrl(link.href, this.window);
       preconnectUrls.add(url.origin);
     }
@@ -4196,6 +4195,7 @@ var PRELOADED_IMAGES = new InjectionToken(typeof ngDevMode === "undefined" || ng
 var PreloadLinkCreator = class _PreloadLinkCreator {
   preloadedImages = inject(PRELOADED_IMAGES);
   document = inject(DOCUMENT);
+  errorShown = false;
   /**
    * @description Add a preload `<link>` to the `<head>` of the `index.html` that is served from the
    * server while using Angular Universal and SSR to kick off image loads for high priority images.
@@ -4213,10 +4213,9 @@ var PreloadLinkCreator = class _PreloadLinkCreator {
    * @param sizes The value of the `sizes` attribute passed in to the `<img>` tag
    */
   createPreloadLinkTag(renderer, src, srcset, sizes) {
-    if (ngDevMode) {
-      if (this.preloadedImages.size >= DEFAULT_PRELOADED_IMAGES_LIMIT) {
-        throw new RuntimeError(2961, ngDevMode && `The \`NgOptimizedImage\` directive has detected that more than ${DEFAULT_PRELOADED_IMAGES_LIMIT} images were marked as priority. This might negatively affect an overall performance of the page. To fix this, remove the "priority" attribute from images with less priority.`);
-      }
+    if (ngDevMode && !this.errorShown && this.preloadedImages.size >= DEFAULT_PRELOADED_IMAGES_LIMIT) {
+      this.errorShown = true;
+      console.warn(formatRuntimeError(2961, `The \`NgOptimizedImage\` directive has detected that more than ${DEFAULT_PRELOADED_IMAGES_LIMIT} images were marked as priority. This might negatively affect an overall performance of the page. To fix this, remove the "priority" attribute from images with less priority.`));
     }
     if (this.preloadedImages.has(src)) {
       return;
@@ -5102,30 +5101,30 @@ export {
 
 @angular/common/fesm2022/location-DpBxd_aX.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/common/fesm2022/common_module-CBrzkrmd.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/common/fesm2022/platform_navigation-B45Jeakb.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/common/fesm2022/common.mjs:
   (**
-   * @license Angular v19.2.6
+   * @license Angular v19.2.7
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-JNFGS7YN.js.map
+//# sourceMappingURL=chunk-CMR2SBP4.js.map

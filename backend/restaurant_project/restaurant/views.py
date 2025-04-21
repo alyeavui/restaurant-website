@@ -121,7 +121,9 @@ class ReviewsList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request, *args, **kwargs):
-        reviews = Review.objects.all()
+        restaurant_id = kwargs['restaurant_id']
+        # reviews = Review.objects.all()
+        reviews = Review.objects.filter(restaurant_id=restaurant_id)
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
 

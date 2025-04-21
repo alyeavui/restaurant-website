@@ -13,6 +13,7 @@ class Restaurant(models.Model):
 class Menu(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="menus")
     name = models.CharField(max_length=100)
+    image_url = models.URLField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return f"{self.restaurant.name} - {self.name}"
