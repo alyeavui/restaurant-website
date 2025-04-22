@@ -5,8 +5,7 @@ import { AuthService } from '../services/auth.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-  const token = authService.getToken();
-  
+  const token = localStorage.getItem('access_token');
   if (token) {
     req = req.clone({
       setHeaders: {
@@ -17,4 +16,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   }
   
   return next(req);
-};
+}; //////////// NOT WORKING I DONT KNOW WHy
+
+
+

@@ -22,32 +22,40 @@ export interface User {
   providedIn: 'root'
 })
 export class ReviewService {
-  private apiUrl = 'http://localhost:8000/api';
+  
+  private apiUrl = 'http://localhost:8000/api/restaurants';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient, private authService : AuthService) { }
-
-  // getReviews(restaurantId: number): Observable<{reviews: Review[]}> {
-  //   return this.http.get<{reviews: Review[]}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/`);
-  // }
-  getReviews(restaurantId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(
-      `${this.apiUrl}/restaurants/${restaurantId}/reviews/`
-    );
+  getReviews(restaurantId: number): Observable<any> {
+    const url = `${this.apiUrl}/${restaurantId}/reviews/`;
+    return this.http.get(url); 
   }
-  getReview(restaurantId: number, reviewId: number): Observable<{review: Review}> {
-    return this.http.get<{review: Review}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/${reviewId}`);
-  }
-
-  addReview(restaurantId: number, review: Omit<Review, 'id' | 'user' | 'restaurant' | 'created_at' | 'updated_at'>): Observable<{new_review: Review}> {
-    return this.http.post<{new_review: Review}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/`, review);
+  
+  
+ 
+  addReview(restaurantId: number, reviewData: any): Observable<any> {
+    const url = `${this.apiUrl}/${restaurantId}/reviews/`;
+    return this.http.post(url, reviewData, this.getHttpOptions());
   }
 
-  updateReview(restaurantId: number, reviewId: number, review: Partial<Review>): Observable<{review: Review}> {
-    return this.http.put<{review: Review}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/${reviewId}`, review);
+  updateReview(restaurantId: number, reviewId: number, reviewData: any): Observable<any> {
+    const url = `${this.apiUrl}/${restaurantId}/reviews/${reviewId}/`;
+    return this.http.put(url, reviewData, this.getHttpOptions());
   }
 
-  deleteReview(restaurantId: number, reviewId: number): Observable<{message: string}> {
-    return this.http.delete<{message: string}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/${reviewId}`);
+  deleteReview(restaurantId: number, reviewId: number): Observable<any> {
+    const url = `${this.apiUrl}/${restaurantId}/reviews/${reviewId}/`;
+    return this.http.delete(url, this.getHttpOptions());
   }
 
+  // Helper method to get HTTP options including the Authorization token
+  private getHttpOptions() {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json', 
+    });
+
+    return { headers };
+  }
 }

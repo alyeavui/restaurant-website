@@ -37,15 +37,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // // Subscribe to auth changes
-    // this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
-    //   this.isLoggedIn = isAuthenticated;
-    //   this.currentUserId = this.authService.getCurrentUserId();
-    // });
-    
-    // // Initialize current auth state
-    // this.isLoggedIn = this.authService.isAuthenticated();
-      // Subscribe to auth changes to check if the user is authenticated
       this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
         this.isLoggedIn = isAuthenticated;
         this.currentUserId = this.authService.getCurrentUserId();

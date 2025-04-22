@@ -14,7 +14,6 @@ export class HeaderMainComponent {
     constructor(private router: Router, private authService: AuthService) {}
   
     ngOnInit(): void {
-      // Listen for authentication changes
       this.authService.isAuthenticated$.subscribe(isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
       });
