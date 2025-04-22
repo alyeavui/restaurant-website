@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from .models import Restaurant, Menu, Dish, Review
 from .serializers import RestaurantSerializer, MenuSerializer, DishSerializer, ReviewSerializer, RegistrationSerializer
 from .permissions import IsAdminOrOwner
+
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 
 # Restaurant model: CBV + FBV
@@ -51,7 +53,7 @@ def restaurant_menu_detail(request, restaurant_id, menu_id):
     try:
         menu = Menu.objects.get(id=menu_id, restaurant_id=restaurant_id)
     except Menu.DoesNotExist:
-        return Response({"error": "Menu not found."}, status=404)
+        return Response({"error": "Menu not found."}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         serializer = MenuSerializer(menu)
@@ -62,11 +64,11 @@ def restaurant_menu_detail(request, restaurant_id, menu_id):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
         menu.delete()
-        return Response({"message": "Menu deleted successfully."}, status=204)
+        return Response({"message": "Menu deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
 
 # Full CBV
@@ -80,8 +82,8 @@ class DishAPIView(APIView):
         serializer = DishSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(menu_id=menu_id)
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
 # RUD With authenticated users
@@ -132,8 +134,8 @@ class ReviewsList(APIView):
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user, restaurant=restaurant)
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # User registration
 class RegistrationView(APIView):
@@ -142,5 +144,19 @@ class RegistrationView(APIView):
         serializer = RegistrationSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message':'User created succesfully'}, status=201)
-        return Response(serializer.errors, status=400)
+            return Response({'message':'User created succesfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LogoutView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Logged out successfully."}, status=status.HTTP_205_RESET_CONTENT)
+        except KeyError:
+            return Response({"error": "Refresh token required."}, status=status.HTTP_400_BAD_REQUEST)
+        except TokenError:
+            return Response({"error": "Invalid or expired token."}, status=status.HTTP_400_BAD_REQUEST)
