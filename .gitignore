@@ -1,3 +1,19 @@
-venv/
-env/
+# Python
 __pycache__/
+*.py[cod]
+*.sqlite3
+.env
+venv/
+ENV/
+*.env
+
+# Node
+node_modules/
+.angular/cache/
+
+# Mac
+.DS_Store
+
+# Angular
+front/restaurant-front/.angular/cache/
+front/restaurant-front/node_modules/

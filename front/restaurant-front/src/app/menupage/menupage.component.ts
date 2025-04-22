@@ -13,7 +13,7 @@ import { HeaderComponent } from "../components/header/header.component";
   standalone: true,
   imports: [CommonModule, RouterModule, SlickCarouselModule, HeaderComponent],
   templateUrl: './menupage.component.html',
-  styleUrls: ['./menupage.component.css'] // <--- исправлено: styleUrl -> styleUrls
+  styleUrls: ['./menupage.component.css'] 
 })
 export class MenupageComponent implements OnInit {
   menus: Menu[] = [];
