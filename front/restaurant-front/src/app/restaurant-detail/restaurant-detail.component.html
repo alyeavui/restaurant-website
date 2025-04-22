@@ -11,5 +11,9 @@
       <img [src]="restaurant.image_url" alt="{{ restaurant.name }}">
     </div>
 </section>
-<app-comments></app-comments>
+<!-- <app-comments></app-comments> -->
+<app-comments
+  *ngIf="restaurant"
+  [restaurantId]="restaurant.id">
+</app-comments>
 <app-footer></app-footer>

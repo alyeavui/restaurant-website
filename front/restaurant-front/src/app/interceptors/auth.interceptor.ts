@@ -10,7 +10,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (token) {
     req = req.clone({
       setHeaders: {
-        Authorization: `Token ${token}` // For Django's Token authentication
+        Authorization: `Bearer ${token}` // For Django's Token authentication
         // For JWT, use: Authorization: `Bearer ${token}`
       }
     });

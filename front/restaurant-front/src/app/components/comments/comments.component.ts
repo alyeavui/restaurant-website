@@ -37,37 +37,41 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Subscribe to auth changes
-    this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
-      this.isLoggedIn = isAuthenticated;
-      this.currentUserId = this.authService.getCurrentUserId();
-    });
+    // // Subscribe to auth changes
+    // this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+    //   this.isLoggedIn = isAuthenticated;
+    //   this.currentUserId = this.authService.getCurrentUserId();
+    // });
     
-    // Initialize current auth state
-    this.isLoggedIn = this.authService.isAuthenticated();
+    // // Initialize current auth state
+    // this.isLoggedIn = this.authService.isAuthenticated();
+      // Subscribe to auth changes to check if the user is authenticated
+      this.authSubscription = this.authService.isAuthenticated$.subscribe(isAuthenticated => {
+        this.isLoggedIn = isAuthenticated;
+        this.currentUserId = this.authService.getCurrentUserId();
+      });
+      
+     
+      this.isLoggedIn = this.authService.isAuthenticatedSubject.value;
     this.currentUserId = this.authService.getCurrentUserId();
     
     this.loadReviews();
   }
   
   ngOnDestroy(): void {
-    // Clean up subscription to prevent memory leaks
+   
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
   }
 
-  loadReviews(): void {
-    this.reviewService.getReviews(this.restaurantId).subscribe({
-      next: (response) => {
-        this.reviews = response.reviews;
-      },
-      error: (error) => {
-        console.error('Error loading reviews:', error);
-        this.errorMessage = 'Unable to load comments. Please try again later.';
-      }
-    });
-  }
+   loadReviews(): void {
+      this.reviewService.getReviews(this.restaurantId)
+         .subscribe({
+           next: (reviewsArray) => this.reviews = reviewsArray,
+           error: (_) => this.errorMessage = 'Unable to load comments.'
+         });
+     }
 
   onSubmit(): void {
     if (this.reviewForm.invalid) {
@@ -127,8 +131,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
   deleteReview(reviewId: number): void {
     if (confirm('Are you sure you want to delete this comment?')) {
       this.reviewService.deleteReview(this.restaurantId, reviewId).subscribe({
+        
         next: () => {
           this.reviews = this.reviews.filter(r => r.id !== reviewId);
+         
         },
         error: (error) => {
           console.error('Error deleting comment:', error);

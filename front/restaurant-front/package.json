@@ -20,6 +20,7 @@
     "@angular/router": "^19.1.0",
     "htmlparser2": "^6.1.0",
     "jquery": "^3.7.1",
+    "jwt-decode": "^4.0.0",
     "ngx-slick-carousel": "^19.0.0",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",

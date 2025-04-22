@@ -15,9 +15,16 @@
             <li><a routerLink="/menu">Menu</a></li>
             <li><a routerLink="/contact">Contact</a></li>
         </ul>
-        <a (click)="login()">
+        <!-- <a (click)="login()">
             <img class="login-button" src='login.png' onclick='myfunction()'>
-        </a>
+        </a> -->
+        <a *ngIf="!isAuthenticated" (click)="login()">
+            <img class="login-button" src="login.png" alt="Login">
+          </a>
+          <a *ngIf="isAuthenticated" (click)="logout()">
+            <img class="login-button" src="logout.png" alt="Logout">
+          </a>
+        
     </nav>
 </header>
     

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 export interface Review {
   id: number;
@@ -23,12 +24,16 @@ export interface User {
 export class ReviewService {
   private apiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService : AuthService) { }
 
-  getReviews(restaurantId: number): Observable<{reviews: Review[]}> {
-    return this.http.get<{reviews: Review[]}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/`);
+  // getReviews(restaurantId: number): Observable<{reviews: Review[]}> {
+  //   return this.http.get<{reviews: Review[]}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/`);
+  // }
+  getReviews(restaurantId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(
+      `${this.apiUrl}/restaurants/${restaurantId}/reviews/`
+    );
   }
-
   getReview(restaurantId: number, reviewId: number): Observable<{review: Review}> {
     return this.http.get<{review: Review}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/${reviewId}`);
   }
@@ -44,4 +49,5 @@ export class ReviewService {
   deleteReview(restaurantId: number, reviewId: number): Observable<{message: string}> {
     return this.http.delete<{message: string}>(`${this.apiUrl}/restaurants/${restaurantId}/reviews/${reviewId}`);
   }
+
 }

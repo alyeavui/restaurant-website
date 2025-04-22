@@ -1,4 +1,4 @@
-<div class="login-container">
+<!-- <div class="login-container">
     <h2>Login</h2>
     
     <div *ngIf="errorMessage" class="error-message">
@@ -35,4 +35,14 @@
       </button>
       <button type="button" (click)="goToHome()">Back to Home</button>
     </form>
-  </div>
+  </div> -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label>Username</label>
+    <input formControlName="username" />
+    <label>Password</label>
+    <input type="password" formControlName="password" />
+    <button type="submit" [disabled]="isLoading">Login</button>
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>
+  
+  

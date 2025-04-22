@@ -120,7 +120,7 @@ class ReviewAPIView(APIView):
 
 # CR with authenticated users
 class ReviewsList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
     def get(self, request, *args, **kwargs):
         restaurant_id = kwargs['restaurant_id']
