@@ -12,8 +12,6 @@ class MenuSerializer(serializers.ModelSerializer):
         model = Menu
         fields = '__all__'
 
-# 2 Serializer
-
 class DishSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     menu = serializers.PrimaryKeyRelatedField(queryset=Menu.objects.all())

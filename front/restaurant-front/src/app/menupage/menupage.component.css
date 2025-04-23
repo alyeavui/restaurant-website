@@ -2,10 +2,12 @@
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   text-align: center;
   padding: 40px 20px;
-  margin-top: 50px;
+  background-color: #f3f3f3;
+  min-height: 100vh;
 }
 
 .section-title {
+  margin-top: 80px;
   font-size: 32px;
   margin-bottom: 10px;
 }
@@ -60,14 +62,13 @@
   font-weight: bold;
   color: white;
   z-index: 2;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
   text-align: center;
   white-space: nowrap;
-  background-color: #af18fa;
+  background-color: #e30101;
 }
 
 .menu-button {
-  background: white;
+  background: white;  
   color: #e64a19;
   border: none;
   border-radius: 50%;
@@ -82,7 +83,7 @@
 }
 
 .menu-button:hover {
-  background: #c23e16;
+  background: #e64a19;
   color: white;
 }
 
@@ -92,12 +93,12 @@
 
 .back-link {
   margin-top: 20px;
-  width: 220px;
-  height: 65px;
-  font-size: 22px;
-  background-color: #FFF5EE;
+  width: 150px;
+  height: 55px;
+  font-size: 20px;
+  background-color: #e64a19;
   border: none;
-  color: #FF6F61;
+  color: white;
   border-radius: 10px;
   padding: 12px 24px;
   font-weight: bold;
@@ -109,7 +110,7 @@
 }
 
 .back-link:hover {
-  background-color: #e64a19;
+  background-color: white;
   transform: scale(1.05);
-  color: #FFF5EE;
+  color: #e64a19;
 }

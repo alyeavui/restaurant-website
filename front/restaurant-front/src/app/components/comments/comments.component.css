@@ -1,52 +1,52 @@
 .comments-container {
-    margin: 20px 0;
-    font-family: 'Arial', sans-serif;
-  }
+  margin: 20px 0;
+  font-family: 'Arial', sans-serif;
+}
   
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
   
-  .error-message {
-    background-color: #ffdddd;
-    color: #bb0000;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-  }
+.error-message {
+  background-color: #ffdddd;
+  color: #bb0000;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
   
-  .comment-form-container {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+.comment-form-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
   
-  h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
-  }
+h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
   
-  .form-group {
-    margin-bottom: 15px;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
   
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
   
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    resize: vertical;
-  }
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+}
   
   .validation-error {
     color: #d32f2f;

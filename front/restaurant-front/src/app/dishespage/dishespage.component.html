@@ -1,11 +1,15 @@
-<p>dishespage works!</p>
-<h2>Dishes</h2>
-<div>
-  <div *ngFor="let dish of dishes">
-    <p>{{ dish.name }} - {{ dish.price }}$ </p>
-    <p>{{dish.description}}</p>
-    <hr>
+<app-header></app-header>
+<div class="container">
+  <div class="dishes-container">
+    <h2 class="dishes-title">Dishes</h2>
+    <div class="dishes-list">
+      <div *ngFor="let dish of dishes" class="dish-card">
+        <h3 class="dish-name">{{ dish.name }}</h3>
+        <p class="dish-price">{{ dish.price }}$</p>
+        <p class="dish-description">{{ dish.description }}</p>
+        <hr class="dish-divider">
+      </div>
+    </div>
+    <a class="back-button" [routerLink]="['/restaurant', restaurantId, 'menu']">Back to Menu</a>
   </div>
 </div>
-<a [routerLink]="['/restaurant', restaurantId, 'menu']">Back to Menu</a>
-

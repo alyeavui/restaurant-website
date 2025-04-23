@@ -1,4 +1,3 @@
-// src/app/interceptors/auth.interceptor.ts
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
@@ -9,14 +8,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (token) {
     req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}` // For Django's Token authentication
-        // For JWT, use: Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}` 
       }
     });
   }
   
   return next(req);
-}; //////////// NOT WORKING I DONT KNOW WHy
+};
 
 
 

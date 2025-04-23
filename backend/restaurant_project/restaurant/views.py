@@ -11,8 +11,6 @@ from .permissions import IsAdminOrOwner
 
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-
-# Restaurant model: CBV + FBV
 @api_view(['GET','POST'])
 def restaurant_list(request):
     if request.method == 'GET':
@@ -33,7 +31,6 @@ class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RestaurantSerializer
     lookup_field = 'id'
 
-# Restaurant menus: full FBV
 @api_view(['GET', 'POST'])
 def restaurant_menus(request, restaurant_id):
     if request.method == 'GET':
@@ -70,8 +67,6 @@ def restaurant_menu_detail(request, restaurant_id, menu_id):
         menu.delete()
         return Response({"message": "Menu deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
-
-# Full CBV
 class DishAPIView(APIView):
     def get(self, request, restaurant_id, menu_id):
         dishes = Dish.objects.filter(menu__id=menu_id, menu__restaurant_id=restaurant_id)
@@ -85,8 +80,6 @@ class DishAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
-# RUD With authenticated users
 class ReviewAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated, IsAdminOrOwner]
 
@@ -118,13 +111,11 @@ class ReviewAPIView(APIView):
         review.delete()
         return Response({'message': 'Review deleted successfully'})
 
-# CR with authenticated users
 class ReviewsList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
     def get(self, request, *args, **kwargs):
         restaurant_id = kwargs['restaurant_id']
-        # reviews = Review.objects.all()
         reviews = Review.objects.filter(restaurant_id=restaurant_id)
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
@@ -137,7 +128,6 @@ class ReviewsList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# User registration
 class RegistrationView(APIView):
     permission_classes = []
     def post(self, request):

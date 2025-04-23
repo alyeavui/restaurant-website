@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestaurantService } from '../services/restaurant.service';
-import { Restaurant } from '../restaurant';
 import { Menu } from '../menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Dish } from '../dish';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { HeaderComponent } from "../components/header/header.component";
+import { HeaderComponent } from '../components/header/header.component';
 
 @Component({
   selector: 'app-menupage',

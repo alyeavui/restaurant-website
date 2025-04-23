@@ -32,32 +32,22 @@ header {
     color: rgb(255, 0, 0);
   }
   
-  .nav-links {
+  .links {
     list-style: none;
     display: flex;
     gap: 20px;
   }
   
-  .nav-links li a {
+  .links a {
     text-decoration: none;
     color: #333333;
     font-size: 16px;
-    transition: color 0.3s ease;
   }
-  
-  .nav-links li a:hover {
-    color: #D90429;
-  }
-  
+
   .cta-button:hover {
     background-color: #D90429;
   }
   
-  .login-button {
-    width: 40px;
-    height: 40px;
-  }
-
   a {
     cursor: pointer;
   }

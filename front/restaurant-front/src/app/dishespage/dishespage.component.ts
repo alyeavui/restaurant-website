@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestaurantService } from '../services/restaurant.service';
-import { Restaurant } from '../restaurant';
-import { Menu } from '../menu';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { Dish } from '../dish';
+import { HeaderComponent } from '../components/header/header.component';
 @Component({
   selector: 'app-dishespage',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HeaderComponent],
   templateUrl: './dishespage.component.html',
   styleUrl: './dishespage.component.css'
 })
@@ -28,4 +27,3 @@ export class DishespageComponent implements OnInit {
     });
   }
 }
-

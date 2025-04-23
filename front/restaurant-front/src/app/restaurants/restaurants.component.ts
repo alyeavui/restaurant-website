@@ -4,11 +4,11 @@ import { RestaurantService } from '../services/restaurant.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { HeaderMainComponent } from '../components/header-main/header-main.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../components/header/header.component';
 @Component({
   selector: 'app-restaurants',
-  imports: [CommonModule, RouterModule, HeaderMainComponent, FormsModule],
+  imports: [CommonModule, RouterModule, HeaderComponent, FormsModule],
   templateUrl: './restaurants.component.html',
   styleUrl: './restaurants.component.css'
 })

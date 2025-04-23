@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 export interface Review {
   id: number;
@@ -48,7 +47,6 @@ export class ReviewService {
     return this.http.delete(url, this.getHttpOptions());
   }
 
-  // Helper method to get HTTP options including the Authorization token
   private getHttpOptions() {
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
